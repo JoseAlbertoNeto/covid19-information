@@ -5,7 +5,8 @@
     android:id="@+id/refresh_layout_more_information_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.printful.covid19.MoreInformationActivity">
+    tools:context="com.printful.covid19.MoreInformationActivity"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
