@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresh_layout_more_information_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.printful.covid19.MoreInformationActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/totalDosesImageView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondDoseInputView"
+            app:srcCompat="@drawable/total" />
+
+        <TextView
+            android:id="@+id/secondDoseInputView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sourceTextView4" />
+
+        <TextView
+            android:id="@+id/sourceTextView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/secondDoseTextView"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/secondDoseImageView"
+            app:layout_constraintStart_toEndOf="@+id/secondDoseImageView" />
+
+        <ImageView
+            android:id="@+id/secondDoseImageView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstDoseInputView"
+            app:srcCompat="@drawable/second_dose" />
+
+        <TextView
+            android:id="@+id/sourceTextView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/firstDoseTextView"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/firstDoseImageView"
+            app:layout_constraintStart_toEndOf="@+id/firstDoseImageView" />
+
+        <TextView
+            android:id="@+id/firstDoseInputView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sourceTextView3" />
+
+        <ImageView
+            android:id="@+id/firstDoseImageView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sourceInputView2"
+            app:srcCompat="@drawable/first_dose" />
+
+        <TextView
+            android:id="@+id/sourceTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/sourceTextView"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/sourceImageView"
+            app:layout_constraintStart_toEndOf="@+id/sourceImageView" />
+
+        <TextView
+            android:id="@+id/sourceInputView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sourceTextView2" />
+
+        <ImageView
+            android:id="@+id/lastUpdateImageView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vaccinesInputTextView"
+            app:srcCompat="@drawable/latest_update" />
+
+        <ImageView
+            android:id="@+id/sourceImageView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lastObservationInputView"
+            app:srcCompat="@drawable/source2" />
+
+        <ImageView
+            android:id="@+id/vaccineImageView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/countryInputTextView"
+            app:srcCompat="@drawable/vaccine" />
+
+        <TextView
+            android:id="@+id/countryTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/countryTextView"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/countryImageView"
+            app:layout_constraintStart_toEndOf="@+id/countryImageView" />
+
+        <TextView
+            android:id="@+id/countryInputTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/countryTextView" />
+
+        <TextView
+            android:id="@+id/vaccinesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/vaccinesTextView"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/vaccineImageView"
+            app:layout_constraintStart_toEndOf="@+id/vaccineImageView" />
+
+        <TextView
+            android:id="@+id/vaccinesInputTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vaccineImageView" />
+
+        <TextView
+            android:id="@+id/lastObservationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/lastUpdateTextView"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/lastUpdateImageView"
+            app:layout_constraintStart_toEndOf="@+id/lastUpdateImageView" />
+
+        <TextView
+            android:id="@+id/lastObservationInputView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lastObservationTextView" />
+
+        <TextView
+            android:id="@+id/sourceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/totalDosesTextView"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/totalDosesImageView"
+            app:layout_constraintStart_toEndOf="@+id/totalDosesImageView" />
+
+        <TextView
+            android:id="@+id/totalDosesInputView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sourceTextView" />
+
+        <ImageView
+            android:id="@+id/countryImageView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/country" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Covid19 Information</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_refresh">Refresh</string>
+    <!-- Strings used for connection status -->
+    <string name="information_not_available">Information not available</string>
+    <string name="offline">You\'re offline, please check your internet connection</string>
+    <string name="online">You\'re online</string>
+    <string name="people">people</string>
+    <!-- Strings used for textView -->
+    <string name="countryTextView">Country</string>
+    <string name="firstDoseTextView">First Dose</string>
+    <string name="lastUpdateTextView">Last Update Date</string>
+    <string name="secondDoseTextView">Second Dose</string>
+    <string name="sourceTextView">Source</string>
+    <string name="totalDosesTextView">Total Doses</string>
+    <string name="vaccinesTextView">Vaccines</string>
+    <string name="title_activity_more_information">MoreInformationActivity</string>
+</resources>
