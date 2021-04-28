@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.os.Bundle
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -28,8 +29,9 @@ class MainActivity : AppCompatActivity() {
         setupLayoutRefresh()
         setupNetworkListener()
         setupRecyclerView()
+        setupSearchView()
 
-        model.getCountryData().observe(this, Observer{
+        model.getCountryData().observe(this, Observer {
             recyclerView.adapter = RecyclerViewAdapter(it)
         })
     }
@@ -43,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Deregister network status callback
      */
-    private fun deregisterNetworkListener(){
+    private fun deregisterNetworkListener() {
         if(this::connectivityManager.isInitialized && this::networkCallback.isInitialized)
             connectivityManager.unregisterNetworkCallback(networkCallback)
     }
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Refresh countries data
      */
-    private fun refreshCountryData(){
+    private fun refreshCountryData() {
         if (connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork) != null)
             model.fetchCountriesInformation()
         else
@@ -61,10 +63,12 @@ class MainActivity : AppCompatActivity() {
     /**
      * Setup Swipe Refresh Layout
      */
-    private fun setupLayoutRefresh(){
+    private fun setupLayoutRefresh() {
         val refreshLayout:SwipeRefreshLayout = findViewById(R.id.layout_refresh)
+        val searchView: SearchView = findViewById<SearchView>(R.id.search_view)
         refreshLayout.setOnRefreshListener {
             refreshCountryData()
+            searchView.clearFocus()
             refreshLayout.isRefreshing = false
         }
     }
@@ -72,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Listen network status to ensure connectivity and fetch data
      */
-    private fun setupNetworkListener(){
+    private fun setupNetworkListener() {
         connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         networkCallback = object: ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
@@ -95,9 +99,37 @@ class MainActivity : AppCompatActivity() {
     /**
      * Find element and configure recycler view
      */
-    private fun setupRecyclerView(){
+    private fun setupRecyclerView() {
         recyclerView = findViewById(R.id.recycler_view_covid)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+    }
+
+    /**
+     * Setup search view and its listeners
+     */
+    private fun setupSearchView() {
+        val searchView: SearchView = findViewById(R.id.search_view)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                if (p0 == null || p0.trim().isEmpty()) {
+                    recyclerView.adapter = RecyclerViewAdapter(model.getCountryData().value!!)
+                } else {
+                    val newList = model.getCountryData().value!!.filter {
+                        it.country.startsWith(p0.trim(), ignoreCase = true)
+                    }
+                    if(newList.isEmpty())
+                        Toast.makeText(applicationContext, getString(R.string.wrong_search) , Toast.LENGTH_SHORT).show()
+                    else
+                        recyclerView.adapter = RecyclerViewAdapter(newList)
+                }
+                searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return true
+            }
+        })
     }
 }

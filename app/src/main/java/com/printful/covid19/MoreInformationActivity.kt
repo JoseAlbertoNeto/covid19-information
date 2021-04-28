@@ -49,7 +49,7 @@ class MoreInformationActivity : AppCompatActivity() {
             textView.setTextColor(resources.getColor(R.color.colorRed))
             textView.text = getString(R.string.information_not_available)
         } else {
-            textView.text = "${NumberFormat.getIntegerInstance(Locale.getDefault()).format(data.toLong())} ${getString(R.string.people)}"
+            textView.text = "${NumberFormat.getIntegerInstance(Locale.getDefault()).format(data.toLong())} ${getString(R.string.doses)}"
         }
     }
 
