@@ -1,4 +1,4 @@
-package com.printful.covid19
+package com.printful.covid19.viewmodel
 
 data class VaccinationData(val country: String,
                            val date: String,

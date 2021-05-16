@@ -1,4 +1,4 @@
-package com.printful.covid19
+package com.printful.covid19.viewmodel
 
 data class CountryData(val country:String,
                        val isoCode: String,

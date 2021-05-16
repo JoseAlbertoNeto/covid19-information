@@ -1,13 +1,16 @@
-package com.printful.covid19
+package com.printful.covid19.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.printful.covid19.R
+import com.printful.covid19.viewmodel.CountryData
 
 class RecyclerViewAdapter <T> (private val list: List<T>): RecyclerView.Adapter<RecyclerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
-        return RecyclerViewHolder(LayoutInflater.from(parent.context).inflate(
+        return RecyclerViewHolder(
+            LayoutInflater.from(parent.context).inflate(
                 R.layout.recycler_view_layout,
                 parent,
                 false

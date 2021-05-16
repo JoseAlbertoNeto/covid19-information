@@ -1,14 +1,20 @@
-package com.printful.covid19
+package com.printful.covid19.ui
 
 import android.content.Context
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.printful.covid19.viewmodel.Covid19ViewModel
+import com.printful.covid19.R
+import com.printful.covid19.model.Result
+import com.printful.covid19.viewmodel.VaccinationData
 import java.text.NumberFormat
 import java.util.*
 
@@ -16,27 +22,37 @@ class MoreInformationActivity : AppCompatActivity() {
     private lateinit var connectivityManager: ConnectivityManager
     private val model: Covid19ViewModel by viewModels()
     private lateinit var country: String
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_more_information)
         setupLayoutRefresh()
+        setupLoading()
         connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         country = intent.getSerializableExtra("country").toString()
-
-        model.getVaccinePerCountry(country).observe(this, Observer{
-            updateVaccineInformation(it[it.lastIndex])
-        })
+        fetchVaccineInformation()
     }
 
     /**
-     * Refresh vaccination for a given country
+     * Observe vaccination information
      */
-    private fun refreshCountryData(){
-        if (connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork) != null)
-            model.fetchVaccinationsPerCountry(country)
-        else
-            Toast.makeText(applicationContext, getString(R.string.offline), Toast.LENGTH_SHORT).show()
+    private fun fetchVaccineInformation(){
+        progressBar.visibility = View.VISIBLE
+        model.fetchVaccinationsPerCountry(country).observe(this, Observer{
+            it?.let {
+                    response ->
+                when(response){
+                    is Result.Success -> {
+                        if (response.data != null) {
+                            updateVaccineInformation(response.data[response.data.lastIndex])
+                            progressBar.visibility = View.GONE
+                        }
+                    }
+                    is Result.Error -> Toast.makeText(this, response.exception.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     /**
@@ -49,7 +65,9 @@ class MoreInformationActivity : AppCompatActivity() {
             textView.setTextColor(resources.getColor(R.color.colorRed))
             textView.text = getString(R.string.information_not_available)
         } else {
-            textView.text = "${NumberFormat.getIntegerInstance(Locale.getDefault()).format(data.toLong())} ${getString(R.string.doses)}"
+            textView.text = "${NumberFormat.getIntegerInstance(Locale.getDefault()).format(data.toLong())} ${getString(
+                R.string.doses
+            )}"
         }
     }
 
@@ -59,9 +77,17 @@ class MoreInformationActivity : AppCompatActivity() {
     private fun setupLayoutRefresh(){
         val refreshLayout: SwipeRefreshLayout = findViewById(R.id.refresh_layout_more_information_activity)
         refreshLayout.setOnRefreshListener {
-            refreshCountryData()
+            fetchVaccineInformation()
             refreshLayout.isRefreshing = false
         }
+    }
+
+    /**
+     * Setup progress bar to show loading data status
+     */
+    private fun setupLoading(){
+        progressBar = findViewById(R.id.progressBar2)
+        progressBar.visibility = View.VISIBLE
     }
 
     /**

@@ -1,9 +1,10 @@
-package com.printful.covid19
+package com.printful.covid19.ui
 
 import android.content.Intent
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.printful.covid19.R
 
 
 class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
